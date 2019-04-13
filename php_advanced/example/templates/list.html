@@ -1,0 +1,28 @@
+{%extends 'index.html'%}
+{%block content%}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        List of Gifts list {{gfl_entries|length}} </br>
+        <a href="/gift_list/add/">AddList</a> </br>
+        <a href="/gift/add/">AddGift</a> </br>
+    </div>
+    <div class="panel-body">
+        <ul>
+            {% for gfl in gfl_entries %}
+                <li>{{gfl.name}},
+                    <a href="/gift_list/edit/{{gfl.id}}">EditList</a>,
+                    <a href="/gift_list/delete/{{gfl.id}}">DeleteList</a>
+                </li>
+                <ol>
+                {% for gft in gfl.gift.values %}
+                    <li value="{{gft.id}}">{{gft.name}},
+                        <a href="/gift/edit/{{gft.id}}">Edit</a>,
+                        <a href="/gift/delete/{{gft.id}}">Delete</a>
+                    </li>
+                {%endfor%}
+                </ol>
+            {%endfor%}
+        </ul>
+    </div>
+</div>
+{%endblock%}
